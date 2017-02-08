@@ -26,9 +26,19 @@ Enemy.prototype.update = function(dt) {
     }
     else {
         this.x = 0;
+    };
+    if (this.x == player.x && this.y == player.y){
+        e1.v = 0;
     }
-    
-
+    else if(this.x == player.x && this.y == player.y){
+        e2.v = 0;
+    }
+    else if(this.x == player.x && this.y == player.y){
+        e3.v = 0;
+    }
+    else if(this.x == player.x && this.y == player.y){
+        e4.v = 0;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -44,17 +54,23 @@ Enemy.prototype.render = function() {
 // added
 var Player = function(){
     this.sprite = 'images/char-boy.png';
-    this.x; // has to be zero?
-    this.y; // has to be one of 3 tiles
+    this.x; 
+    this.y; 
     //this.v;  //speed;
 };
 
 Player.prototype.update = function(dt){
-    //this.v = dt * this.v; //this is wrong.
+   // this.x = 2.5 * 83;
+   // this.y = 4.5 * 83;
+  // if (this.x == e1.x || this.x == e2.x || this.x == e3.x || this.x == e4.x){
+
+  // }
 };
 
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite),this.x, this.y);
+   // console.log("x= " + this.x);
+   // console.log("y= " + this.y);
 };
 
 var keypress;
@@ -63,19 +79,26 @@ Player.prototype.handleInput = function(keypress) {
 /* */ console.log('keypress: ' + keypress)  ;
     if (keypress == 'left' && player.x > 101){
         player.x = player.x - 101;
-        console.log("left");
+      //  console.log("left");
     }
     else if(keypress == 'right'&& player.x <400){
         player.x = player.x + 101;
-        console.log("right");
+      //  console.log("right");
     }
     else if (keypress == 'up'&& player.y > 0){
         player.y = player.y - 83;
-        console.log("up");
+     //   console.log("up");
+     //   console.log("x= " + this.x);
+     //   console.log("y= " + this.y);
+        if(player.y < 0){
+            console.log("You Win!");
+            player.x = 2.5 * 83;
+            player.y = 4.5 * 83;
+        }
     }
     else if(keypress == 'down' && player.y < 300){
         player.y = player.y + 83;
-        console.log("down");
+     //   console.log("down");
     }
 
 
