@@ -27,7 +27,7 @@ Enemy.prototype.update = function(dt) {
     else {
         this.x = 0;
     };
-    if (this.x == player.x && this.y == player.y){
+/*    if (this.x == player.x && this.y == player.y){
         console.log("You Lose!");
         this.x = 0;
     }
@@ -43,6 +43,7 @@ Enemy.prototype.update = function(dt) {
         console.log("You Lose!");
         this.x = 0;
     }
+*/
 };
 
 // Draw the enemy on the screen, required method for game
@@ -69,19 +70,21 @@ Player.prototype.update = function(dt){
   // if (this.x == e1.x || this.x == e2.x || this.x == e3.x || this.x == e4.x){
 
   // }
-  if (player.x == e1.x && player.y == e1.y){
+/*    if (player.x == e1.x && player.y == e1.y){
             console.log("You Lose!");
             this.x = 2.5 * 83;
             this.y = 4.85 * 83;
         }
+*/
 };
 
 Player.prototype.render = function(){
-     if (player.x == e1.x && player.y == e1.x){
+/*     if (player.x == e1.x && player.y == e1.x){
             console.log("You Lose!");
             this.x = 2.5 * 83;
             this.y = 4.85 * 83;
         }
+*/
     ctx.drawImage(Resources.get(this.sprite),this.x, this.y);
    // console.log("x= " + this.x);
    // console.log("y= " + this.y);
@@ -110,11 +113,12 @@ Player.prototype.handleInput = function(keypress) {
             player.x = 2.5 * 83;
             player.y = 4.85 * 83;
         }
-        if (player.x == e1.x && player.y == e1.y){
+/*        if (player.x == e1.x && player.y == e1.y){
             console.log("You Lose!");
             player.x = 2.5 * 83;
             player.y = 4.85 * 83;
         }
+*/
     }
     else if(keypress == 'down' && player.y < 400){
         player.y = player.y + 83;

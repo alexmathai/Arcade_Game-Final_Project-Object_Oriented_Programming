@@ -80,7 +80,72 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+    }
+
+    function checkCollisions(){
+        var playerRect = {x: player.x, y: player.y, width: 83, height: 83}
+        var e1Rect = {x: e1.x, y: e1.y, width: 83, height: 83}
+        var e2Rect = {x: e2.x, y: e2.y, width: 83, height: 83}
+        var e3Rect = {x: e3.x, y: e3.y, width: 83, height: 83}
+        var e4Rect = {x: e4.x, y: e4.y, width: 83, height: 83}
+
+    //    console.log("playerRect.x:" + playerRect.x);
+    //    console.log("playerRect.y:" + playerRect.y);
+    //    console.log("e1Rect.x:" + e1Rect.x);
+    //    console.log("e1Rect.y:" + e1Rect.y);
+
+        if (playerRect.x < e1Rect.x + e1Rect.width &&
+           playerRect.x + playerRect.width > e1Rect.x &&
+           playerRect.y < e1Rect.y + e1Rect.height &&
+           playerRect.height + playerRect.y > e1Rect.y) {
+            // collision detected!
+            console.log("Collision 1!");
+            console.log("You Lose!");
+            player.x = 2.5 * 83;
+            player.y = 4.85 * 83;
+        } 
+        else if (playerRect.x < e2Rect.x + e2Rect.width &&
+           playerRect.x + playerRect.width > e2Rect.x &&
+           playerRect.y < e2Rect.y + e2Rect.height &&
+           playerRect.height + playerRect.y > e2Rect.y) {
+            // collision detected!
+            console.log("Collision 2!");
+            console.log("You Lose!");
+            player.x = 2.5 * 83;
+            player.y = 4.85 * 83;
+        } 
+        else if (playerRect.x < e3Rect.x + e3Rect.width &&
+           playerRect.x + playerRect.width > e3Rect.x &&
+           playerRect.y < e3Rect.y + e3Rect.height &&
+           playerRect.height + playerRect.y > e3Rect.y) {
+            // collision detected!
+            console.log("Collision 3!");
+            console.log("You Lose!");
+            player.x = 2.5 * 83;
+            player.y = 4.85 * 83;
+        } 
+        else if (playerRect.x < e4Rect.x + e4Rect.width &&
+           playerRect.x + playerRect.width > e4Rect.x &&
+           playerRect.y < e4Rect.y + e4Rect.height &&
+           playerRect.height + playerRect.y > e4Rect.y) {
+            // collision detected!
+            console.log("Collision 4!");
+            console.log("You Lose!");
+            player.x = 2.5 * 83;
+            player.y = 4.85 * 83;
+        } 
+        else {
+            e1Rect.x = 0;
+            e1Rect.y = 0;
+            e2Rect.x = 0;
+            e2Rect.y = 0;
+            e3Rect.x = 0;
+            e3Rect.y = 0;
+            e4Rect.x = 0;
+            e4Rect.y = 0;
+        }
+
     }
 
     /* This is called by the update function and loops through all of the
