@@ -79,22 +79,16 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-      var collData = checkCollisions()  
-        if(collData == true){
-    
-        }
-        else
-            console.log("No Collision.");
-        updateEntities(dt);
-        
+        checkCollisions();         
+        updateEntities(dt);        
     }
 
     function checkCollisions(){
-        var playerRect = {x: player.x, y: player.y, width: 50, height: 50}
-        var e1Rect = {x: e1.x, y: e1.y, width: 83, height: 83}
-        var e2Rect = {x: e2.x, y: e2.y, width: 83, height: 83}
-        var e3Rect = {x: e3.x, y: e3.y, width: 83, height: 83}
-        var e4Rect = {x: e4.x, y: e4.y, width: 83, height: 83}
+        var playerRect = {x: player.x, y: player.y, width: 50, height: 50};
+        var e1Rect = {x: e1.x, y: e1.y, width: 83, height: 83};
+        var e2Rect = {x: e2.x, y: e2.y, width: 83, height: 83};
+        var e3Rect = {x: e3.x, y: e3.y, width: 83, height: 83};
+        var e4Rect = {x: e4.x, y: e4.y, width: 83, height: 83};
 
         var collisionData = {playerRect, e4Rect};
 
@@ -135,16 +129,16 @@ var Engine = (function(global) {
            playerRect.y < e4Rect.y + e4Rect.height &&
            playerRect.height + playerRect.y > e4Rect.y) {
             // collision detected!
-/*            console.log("playerRect.x:" + playerRect.x);
-            console.log("playerRect.y:" + playerRect.y);
-            console.log("e4Rect.x:" + e4Rect.x);
-            console.log("e1Rect.y:" + e1Rect.y);
+        //    console.log("playerRect.x:" + playerRect.x);
+        //    console.log("playerRect.y:" + playerRect.y);
+        //    console.log("e4Rect.x:" + e4Rect.x);
+        //    console.log("e1Rect.y:" + e1Rect.y);
             console.log("Collision 4!");
             console.log("You Lose!");
             player.x = 2.5 * 83;
             player.y = 4.85 * 83;
             return collisionData;
- */       } 
+ /**/       } 
         else {
             e1Rect.x = 0;
             e1Rect.y = 0;

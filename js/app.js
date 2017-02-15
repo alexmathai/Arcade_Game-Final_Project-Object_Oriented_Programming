@@ -91,7 +91,9 @@ Player.prototype.render = function(){
 
 };
 
-var keypress;
+
+
+//var keypress;
 
 Player.prototype.handleInput = function(keypress) {
 /*  console.log('keypress: ' + keypress)  ;*/
@@ -127,6 +129,44 @@ Player.prototype.handleInput = function(keypress) {
 
 
 };
+
+
+// added
+var YouWin = function(){
+    this.sprite = 'images/youwin.png';
+    this.x; 
+    this.y; 
+    //this.v;  //speed;
+};
+
+YouWin.prototype.update = function(dt){
+   // this.x = 2.5 * 83;
+   // this.y = 4.5 * 83;
+  // if (this.x == e1.x || this.x == e2.x || this.x == e3.x || this.x == e4.x){
+
+  // }
+/*    if (player.x == e1.x && player.y == e1.y){
+            console.log("You Lose!");
+            this.x = 2.5 * 83;
+            this.y = 4.85 * 83;
+        }
+*/
+};
+
+YouWin.prototype.render = function(){
+/*     if (player.x == e1.x && player.y == e1.x){
+            console.log("You Lose!");
+            this.x = 2.5 * 83;
+            this.y = 4.85 * 83;
+        }
+*/
+    ctx.drawImage(Resources.get(this.sprite),this.x, this.y);
+   // console.log("x= " + this.x);
+   // console.log("y= " + this.y);
+
+};
+
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
