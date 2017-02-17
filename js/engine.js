@@ -83,6 +83,8 @@ var Engine = (function(global) {
         updateEntities(dt);        
     }
 
+    var youLost = false;
+
     function checkCollisions(){
         var playerRect = {x: player.x, y: player.y, width: 50, height: 50};
         var e1Rect = {x: e1.x, y: e1.y, width: 83, height: 83};
@@ -91,17 +93,19 @@ var Engine = (function(global) {
         var e4Rect = {x: e4.x, y: e4.y, width: 83, height: 83};
 
         var collisionData = {playerRect, e4Rect};
+        var delay = 1000;
 
         if (playerRect.x < e1Rect.x + e1Rect.width &&
            playerRect.x + playerRect.width > e1Rect.x &&
            playerRect.y < e1Rect.y + e1Rect.height &&
            playerRect.height + playerRect.y > e1Rect.y) {
             // collision detected!
-            console.log("Collision 1!");
-            console.log("You Lose!");
             player.x = 2.5 * 83;
             player.y = 4.85 * 83;
-           // return collisionData;
+            youLost = true;
+            setTimeout(function(){   
+                youLost = false;
+            },delay); 
         } 
         else if (playerRect.x < e2Rect.x + e2Rect.width &&
            playerRect.x + playerRect.width > e2Rect.x &&
@@ -112,6 +116,10 @@ var Engine = (function(global) {
             console.log("You Lose!");
             player.x = 2.5 * 83;
             player.y = 4.85 * 83;
+            youLost = true;
+            setTimeout(function(){   
+                youLost = false;
+            },delay);
         } 
         else if (playerRect.x < e3Rect.x + e3Rect.width &&
            playerRect.x + playerRect.width > e3Rect.x &&
@@ -122,7 +130,10 @@ var Engine = (function(global) {
             console.log("You Lose!");
             player.x = 2.5 * 83;
             player.y = 4.85 * 83;
-            return true;
+            youLost = true;
+            setTimeout(function(){   
+                youLost = false;
+            },delay);
         } 
        else if (playerRect.x < e4Rect.x + e4Rect.width &&
            playerRect.x + playerRect.width > e4Rect.x &&
@@ -137,7 +148,10 @@ var Engine = (function(global) {
             console.log("You Lose!");
             player.x = 2.5 * 83;
             player.y = 4.85 * 83;
-            return collisionData;
+            youLost = true;
+            setTimeout(function(){   
+                youLost = false;
+            },delay); 
  /**/       } 
         else {
             e1Rect.x = 0;
@@ -149,6 +163,13 @@ var Engine = (function(global) {
             e4Rect.x = 0;
             e4Rect.y = 0;
             return true;
+        }
+
+        if(youLost == true){
+            render(youLost);
+           
+            console.log("youLost == true");
+            
         }
 
     }
@@ -165,6 +186,7 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+        youWin.update();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -173,7 +195,9 @@ var Engine = (function(global) {
      * they are flipbooks creating the illusion of animation but in reality
      * they are just drawing the entire screen over and over.
      */
-    function render() {
+
+   
+    function render(lost) {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
@@ -205,15 +229,16 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
+                    
+        renderEntities(youLost);
 
-        renderEntities();
     }
 
     /* This function is called by the render function and is called on each game
      * tick. Its purpose is to then call the render functions you have defined
      * on your enemy and player entities within app.js
      */
-    function renderEntities() {
+    function renderEntities(youLost) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
@@ -221,6 +246,22 @@ var Engine = (function(global) {
             enemy.render();
         });
 
+        var delay = 1000;
+
+        if(player.y < 0){
+            youWin.render();
+            //console.log("You Win!");     
+              
+            setTimeout(function(){                
+                player.x = 2.5 * 83;
+                player.y = 4.85 * 83;
+            },delay);  
+        }
+        
+        if(youLost == true){
+            youLose.render();
+        }
+        
         player.render();
     }
 
@@ -241,7 +282,9 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/youwin.png',
+        'images/gameover.jpg'
     ]);
     Resources.onReady(init);
 

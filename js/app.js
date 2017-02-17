@@ -19,31 +19,13 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
-    // added
-    //this.v = dt * this.v; //this is wrong.
+    // added   
     if(this.x < 7 * 83){
         this.x = this.x + this.v * dt * 83;
     }
     else {
         this.x = 0;
     };
-/*    if (this.x == player.x && this.y == player.y){
-        console.log("You Lose!");
-        this.x = 0;
-    }
-    else if(this.x == player.x && this.y == player.y){
-        console.log("You Lose!");
-        this.x = 0;
-    }
-    else if(this.x == player.x && this.y == player.y){
-        console.log("You Lose!");
-        this.x = 0;
-    }
-    else if(this.x == player.x && this.y == player.y){
-        console.log("You Lose!");
-        this.x = 0;
-    }
-*/
 };
 
 // Draw the enemy on the screen, required method for game
@@ -60,35 +42,15 @@ Enemy.prototype.render = function() {
 var Player = function(){
     this.sprite = 'images/char-boy.png';
     this.x; 
-    this.y; 
-    //this.v;  //speed;
+    this.y;    
 };
 
 Player.prototype.update = function(dt){
-   // this.x = 2.5 * 83;
-   // this.y = 4.5 * 83;
-  // if (this.x == e1.x || this.x == e2.x || this.x == e3.x || this.x == e4.x){
-
-  // }
-/*    if (player.x == e1.x && player.y == e1.y){
-            console.log("You Lose!");
-            this.x = 2.5 * 83;
-            this.y = 4.85 * 83;
-        }
-*/
+   
 };
 
 Player.prototype.render = function(){
-/*     if (player.x == e1.x && player.y == e1.x){
-            console.log("You Lose!");
-            this.x = 2.5 * 83;
-            this.y = 4.85 * 83;
-        }
-*/
-    ctx.drawImage(Resources.get(this.sprite),this.x, this.y);
-   // console.log("x= " + this.x);
-   // console.log("y= " + this.y);
-
+    ctx.drawImage(Resources.get(this.sprite),this.x, this.y);   
 };
 
 
@@ -99,32 +61,15 @@ Player.prototype.handleInput = function(keypress) {
 /*  console.log('keypress: ' + keypress)  ;*/
     if (keypress == 'left' && player.x > 101){
         player.x = player.x - 101;
-      //  console.log("left");
     }
     else if(keypress == 'right'&& player.x <400){
         player.x = player.x + 101;
-      //  console.log("right");
     }
     else if (keypress == 'up'&& player.y > 0){
-        player.y = player.y - 83;
-     //   console.log("up");
-     //   console.log("x= " + this.x);
-     //   console.log("y= " + this.y);
-        if(player.y < 0){
-            console.log("You Win!");
-            player.x = 2.5 * 83;
-            player.y = 4.85 * 83;
-        }
-/*        if (player.x == e1.x && player.y == e1.y){
-            console.log("You Lose!");
-            player.x = 2.5 * 83;
-            player.y = 4.85 * 83;
-        }
-*/
+        player.y = player.y - 83;     
     }
     else if(keypress == 'down' && player.y < 400){
         player.y = player.y + 83;
-     //   console.log("down");
     }
 
 
@@ -132,39 +77,45 @@ Player.prototype.handleInput = function(keypress) {
 
 
 // added
-var YouWin = function(){
+var youWin = function(){
     this.sprite = 'images/youwin.png';
     this.x; 
-    this.y; 
-    //this.v;  //speed;
+    this.y;    
 };
 
-YouWin.prototype.update = function(dt){
-   // this.x = 2.5 * 83;
-   // this.y = 4.5 * 83;
-  // if (this.x == e1.x || this.x == e2.x || this.x == e3.x || this.x == e4.x){
-
-  // }
-/*    if (player.x == e1.x && player.y == e1.y){
-            console.log("You Lose!");
-            this.x = 2.5 * 83;
-            this.y = 4.85 * 83;
-        }
-*/
-};
-
-YouWin.prototype.render = function(){
-/*     if (player.x == e1.x && player.y == e1.x){
-            console.log("You Lose!");
-            this.x = 2.5 * 83;
-            this.y = 4.85 * 83;
-        }
-*/
-    ctx.drawImage(Resources.get(this.sprite),this.x, this.y);
-   // console.log("x= " + this.x);
-   // console.log("y= " + this.y);
+youWin.prototype.update = function(dt){    
 
 };
+
+youWin.prototype.render = function(){
+    
+        this.x = 1.5 * 83;
+        this.y = 2.85 * 83;
+      
+        ctx.drawImage(Resources.get(this.sprite),this.x, this.y);
+  
+};
+
+// added
+var youLose = function(){
+    this.sprite = 'images/gameover.jpg';
+    this.x; 
+    this.y;    
+};
+
+youLose.prototype.update = function(dt){    
+
+};
+
+youLose.prototype.render = function(){
+    
+        this.x = 1.5 * 83;
+        this.y = 2.85 * 83;
+      
+        ctx.drawImage(Resources.get(this.sprite),this.x, this.y);
+  
+};
+
 
 
 
@@ -176,7 +127,7 @@ YouWin.prototype.render = function(){
 var e1 = new Enemy();
 e1.x = -1 * 83;
 e1.y = 1*60;
-e1.v = 1;
+e1.v = 1.5;
 
 var e2 = new Enemy();
 e2.x = -1 * 83 ;
@@ -198,6 +149,15 @@ var allEnemies = [e1,e2,e3,e4];
 var player = new Player();
 player.x = 2.5 * 83;
 player.y = 4.85 * 83;
+
+var youWin = new youWin();
+youWin.x = 2.5 * 83;
+youWin.y = 3.85 * 83;
+
+var youLose = new youLose();
+youLose.x = 2.5 * 83;
+youLose.y = 3.85 * 83;
+
 
 
 
